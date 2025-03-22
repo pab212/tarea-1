@@ -3,9 +3,9 @@
 #include <stdlib.h>
 
 int main () {
-    char *precio_total []={"4","1","0","21","3","313313"};
-    char *precio[]= {"3","2","2","8","8"};
-    char *cantidad_pizzas[] = {"2", "3", "4", "1", "1"};
+    char *precio_total []={,,,,,};
+    char *precio[]= {,,,,};
+    char *cantidad_pizzas[] = {, , , , };
     
 
     int cantidad3 = sizeof(precio_total) / sizeof(precio_total[0]);
