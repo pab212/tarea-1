@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_ENTRADAS 100
+#define MAX_LONGITUD 256
+
+// Estructura tipo "diccionario"
+typedef struct {
+    char clave[MAX_LONGITUD];
+    char valor[MAX_LONGITUD];
+} Diccionario;
+
+int main() {
+    FILE *archivo = fopen("datos.csv", "r");
+    if (archivo == NULL) {
+        perror("Error al abrir el archivo");
+        return 1;
+    }
+    
+    Diccionario diccionario[MAX_ENTRADAS];
+    int contador = 0;
+    char linea[MAX_LONGITUD];
+    
+    while (fgets(linea, sizeof(linea), archivo) && contador < MAX_ENTRADAS) {
+        char *clave = strtok(linea, ",");
+        char *valor = strtok(NULL, "\n");
+        
+        if (clave != NULL && valor != NULL) {
+            strcpy(diccionario[contador].clave, clave);
+            strcpy(diccionario[contador].valor, valor);
+            contador++;
+        }
+    }
+    
+    fclose(archivo);
+    
+    // Imprimir el "diccionario"
+    printf("Contenido del diccionario:\n");
+    for (int i = 0; i < contador; i++) {
+        printf("%s -> %s\n", diccionario[i].clave, diccionario[i].valor);
+    }
+    
+    return 0;
+}
+
